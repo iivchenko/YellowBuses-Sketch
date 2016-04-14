@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="YellowBuses_Sketch.App.Views.StopsPage"    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d"
+    Background="White"
+    Foreground="Black">
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Name="StopFilter"  Grid.Row="0" BorderBrush="Black" Margin="5,5,5,5" KeyDown="UIElement_OnKeyDown"/>
+        <ListView
+            Grid.Row="1"
+            AutomationProperties.AutomationId="ItemListView"
+            AutomationProperties.Name="Items In Group"
+            TabIndex="1"
+            ItemsSource="{Binding Stops}"
+            IsItemClickEnabled="True"
+            SelectionMode="None"
+            IsSwipeEnabled="false"
+            Margin="19,0,0,0"
+            ItemClick="AddStop_OnItemClick">
+            <DataTemplate>
+                <StackPanel VerticalAlignment="Top">
+                    <TextBlock Text="{Binding Name}"/>
+                </StackPanel>
+            </DataTemplate>
+        </ListView>
+    </Grid>
+</Page>
